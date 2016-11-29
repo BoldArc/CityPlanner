@@ -19,9 +19,21 @@ public class SpeechManager : MonoBehaviour {
     {
         keywordCollection = new Dictionary<string, KeywordAction>();
         //keywordCollection.Add("Move", MoveCommand);
-        keywordCollection.Add("Place", PlaceCommand);
+        //keywordCollection.Add("Place", PlaceCommand);
         keywordCollection.Add("Reset World", ResetCommand);
         keywordCollection.Add("Explode", ExplodeCommand);
+        keywordCollection.Add("Show Label", ShowLabelCommand);
+        keywordCollection.Add("Place World", PlaceWorldCommand);
+        keywordCollection.Add("Show Info", ShowInfoCommand);
+        keywordCollection.Add("Place Plan", PlacePlanCommand);
+        keywordCollection.Add("Show Plan", ShowPlanCommand);
+        keywordCollection.Add("Hide Plan", HidePlanCommand);
+        keywordCollection.Add("Place Model", PlaceModelCommand);
+        keywordCollection.Add("Show Model", ShowModelCommand);
+        keywordCollection.Add("Hide Model", HideModelCommand);
+        keywordCollection.Add("Show Wall", ShowWallCommand);
+        keywordCollection.Add("Hide Wall", HideWallCommand);
+        keywordCollection.Add("Add Wall", AddWallCommand);
 
         /*keywords.Add("Reset World", () =>
         {
@@ -87,6 +99,66 @@ public class SpeechManager : MonoBehaviour {
     private void ExplodeCommand(PhraseRecognizedEventArgs args)
     {
         model.BroadcastMessage("Explode");
+    }
+
+    private void ShowLabelCommand(PhraseRecognizedEventArgs args)
+    {
+        model.BroadcastMessage("ShowLabel");
+    }
+
+    private void PlaceWorldCommand(PhraseRecognizedEventArgs args)
+    {
+        model.BroadcastMessage("PlaceWorld");
+    }
+
+    private void ShowInfoCommand(PhraseRecognizedEventArgs args)
+    {
+        model.BroadcastMessage("ShowInfo");
+    }
+
+    private void PlacePlanCommand(PhraseRecognizedEventArgs args)
+    {
+        model.BroadcastMessage("PlacePlan");
+    }
+
+    private void ShowPlanCommand(PhraseRecognizedEventArgs args)
+    {
+        model.BroadcastMessage("ShowPlan");
+    }
+
+    private void HidePlanCommand(PhraseRecognizedEventArgs args)
+    {
+        model.BroadcastMessage("HidePlan");
+    }
+
+    private void PlaceModelCommand(PhraseRecognizedEventArgs args)
+    {
+        model.BroadcastMessage("PlaceModel");
+    }
+
+    private void ShowModelCommand(PhraseRecognizedEventArgs args)
+    {
+        model.BroadcastMessage("ShowModel");
+    }
+
+    private void HideModelCommand(PhraseRecognizedEventArgs args)
+    {
+        model.BroadcastMessage("HideModel");
+    }
+
+    private void ShowWallCommand(PhraseRecognizedEventArgs args)
+    {
+        model.BroadcastMessage("ShowWall");
+    }
+
+    private void HideWallCommand(PhraseRecognizedEventArgs args)
+    {
+        model.BroadcastMessage("HideWall");
+    }
+
+    private void AddWallCommand(PhraseRecognizedEventArgs args)
+    {
+        model.BroadcastMessage("AddWall");
     }
 
     public void Update()

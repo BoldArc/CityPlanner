@@ -8,6 +8,9 @@ namespace HoloToolkit
     /// </summary>
     public class DirectionIndicator : MonoBehaviour
     {
+        [SerializeField]
+        private GameObject TargetObject;
+
         [Tooltip("The Cursor object an on-cursor direction indicator will attach to.")]
         public GameObject Cursor;
 
@@ -94,7 +97,7 @@ namespace HoloToolkit
             }
 
             // Direction from the Main Camera to this script's parent gameObject.
-            Vector3 camToObjectDirection = gameObject.transform.position - Camera.main.transform.position;
+            Vector3 camToObjectDirection = gameObject.transform.parent.position - Camera.main.transform.position;
             camToObjectDirection.Normalize();
 
             // The cursor indicator should only be visible if the target is not visible.
@@ -117,11 +120,14 @@ namespace HoloToolkit
 
         private bool IsTargetVisible()
         {
-            // This will return true if the target's mesh is within the Main Camera's view frustums.
-            Vector3 targetViewportPosition = Camera.main.WorldToViewportPoint(gameObject.transform.position);
-            return (targetViewportPosition.x > TitleSafeFactor && targetViewportPosition.x < 1 - TitleSafeFactor &&
-                targetViewportPosition.y > TitleSafeFactor && targetViewportPosition.y < 1 - TitleSafeFactor &&
-                targetViewportPosition.z > 0);
+            //Renderer[] rendererComponents = GetComponentsInParent<Renderer>();
+            //gameObject.transform.parent.renderer
+            //// This will return true if the target's mesh is within the Main Camera's view frustums.
+            //Vector3 targetViewportPosition = Camera.main.WorldToViewportPoint(TargetObject.transform.position);
+            //return (targetViewportPosition.x > TitleSafeFactor && targetViewportPosition.x < 1 - TitleSafeFactor &&
+            //    targetViewportPosition.y > TitleSafeFactor && targetViewportPosition.y < 1 - TitleSafeFactor &&
+            //    targetViewportPosition.z > 0);
+            return true;
         }
 
         private void GetDirectionIndicatorPositionAndRotation(
@@ -131,7 +137,7 @@ namespace HoloToolkit
         {
             // Find position:
             // Use this value to decrease the distance from the cursor center an object is rendered to keep it in view.
-            float metersFromCursor = 0.3f;
+            float metersFromCursor = 0.2f;
 
             // Save the cursor transform position in a variable.
             Vector3 origin = Cursor.transform.position;

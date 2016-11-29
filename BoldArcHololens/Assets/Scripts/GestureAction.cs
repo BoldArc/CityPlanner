@@ -19,11 +19,10 @@ public class GestureAction : MonoBehaviour
 
     public float m_yMin;
     public float m_yMax;
+    public bool m_bControlY;
 
     void Start()
     {
-        m_yMin = m_yMin + transform.position.y;
-        m_yMax = m_yMax + transform.position.y;
     }
 
     void Update()
@@ -71,16 +70,18 @@ public class GestureAction : MonoBehaviour
             moveVector.x *= m_xFactor;
             moveVector.y *= m_yFactor;
             moveVector.z *= m_zFactor;
-            transform.position += moveVector;
+            transform.localPosition += moveVector;
 
-            Vector3 v;
-
-            v = transform.position;
-            if (v.y < m_yMin)
-                v.y = m_yMin;
-            if (v.y > m_yMax)
-                v.y = m_yMax;
-            transform.position = v;
+            if (m_bControlY)
+            {
+                Vector3 v;
+                v = transform.localPosition;
+                if (v.y < m_yMin)
+                    v.y = m_yMin;
+                if (v.y > m_yMax)
+                    v.y = m_yMax;
+                transform.localPosition = v;
+            }
         }
     }
 }
